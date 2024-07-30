@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWSLETTER</title>
+    <style>
+        @font-face {
+            font-family: 'IBMPlexSansKR-Regular';
+            src: url('YOUR_GOOGLE_DRIVE_FONT_URL') format('woff2');
+        }
+        @font-face {
+            font-family: 'IBMPlexSansKR-Bold';
+            src: url('YOUR_GOOGLE_DRIVE_BOLD_FONT_URL') format('woff2');
+        }
+        body {
+            font-family: 'IBMPlexSansKR-Regular', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: left;
+            border-bottom: 2px solid #000;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #000;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 48px;
+            font-family: 'IBMPlexSansKR-Bold', Arial, sans-serif;
+            letter-spacing: 2px;
+            color: white;
+        }
+        
+        .logo {
+            width: auto;
+            height: 30px;
+        }
+        .main {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .item {
+            width: 100%;
+            margin-bottom: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .item:hover {
+            transform: translateY(-5px);
+        }
+        .item img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+        .item h2 {
+            background-color: #000;
+            color: #fff;
+            padding: 15px;
+            margin: 0;
+            font-family: 'IBMPlexSansKR-Bold', Arial, sans-serif;
+            font-size: 18px;
+        }
+        .item p {
+            padding: 15px;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .item .published-date {
+            padding: 10px 15px;
+            font-size: 0.9em;
+            color: #666;
+            border-top: 1px solid #eee;
+            background-color: #f9f9f9;
+        }
+
+        .footer {
+            border-top: 2px solid #000;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #000;
+            
+        }
+        .footer a {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NEWSLETTER</h1>
+            <img src="data:image/png;base64,{{ logo_base64 }}" alt="로고" class="logo">
+        </div>
+        <div class="main">
+            {% for news in news_items %}
+            <div class="item">
+                <a href="{{ news.url }}" target="_blank">
+                    <img src="{{ news.image_url }}" alt="Image">
+                </a>
+                <div class="published-date">발행일: {{ news.published_at.strftime('%Y년 %m월 %d일') }}</div>
+                <h2>{{ news.title }}</h2>
+                <p>{{ news.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="footer">
+            기사 원문은 <a href="https://stoz.co.kr/">STOZ</a>에서 확인하실 수 있습니다.
+        </div>
+    </div>
+</body>
+</html>

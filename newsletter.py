@@ -19,7 +19,7 @@ import base64
 drive.mount('/content/drive', force_remount=True)
 
 # OpenAI API 키 설정 (환경 변수 사용)
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="")
 
 def get_image_base64(image_path):
     with open(image_path, "rb") as image_file:
